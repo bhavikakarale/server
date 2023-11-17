@@ -54,4 +54,23 @@ router.put("/:userName/about", async (req, res) => {
   }
 });
 
+// experience route
+router.put("/:userName/experience", async (req, res) => {
+  try{
+    const { experience } = req.body;
+    const user = await User.findOne({ firstName: req.params.userName });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    // Assuming you want to add the new experience to the existing ones
+    user.experiences.push(experience);
+    // Save the updated user
+    const updatedUser = await user.save();
+    res.json({ user: updatedUser });
+  } catch(err){
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 module.exports = router;
