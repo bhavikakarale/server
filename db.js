@@ -1,7 +1,8 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 
 const connectionString =
-  "mongodb+srv://aachava2:Mongo10144@cluster0.obbojwn.mongodb.net/?retryWrites=true&w=majority";
+  process.env.MONGO_URL;
 
 const connectDB = async () => {
   try {

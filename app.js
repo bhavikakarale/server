@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -13,6 +14,6 @@ server.use("/", routes);
 
 connectDB();
 
-server.listen(8080, () => {
+server.listen(process.env.PORT, () => {
   console.log("Server is running!");
 });
